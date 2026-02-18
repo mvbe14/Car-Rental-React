@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import {NavLink} from "react-router-dom";
 
 import {UserConsumer} from "../../../context/UserContext";
@@ -9,6 +9,7 @@ import './Navigation.css';
 const Navigation = (props) => {
 
     const {user} = props;
+    const [showUserMenu, setShowUserMenu] = useState(false);
 
     return (
         <header>
@@ -42,9 +43,33 @@ const Navigation = (props) => {
                                                     </Fragment>
                                                 )
                                         }
-                                        <NavLink to="/logout" className="nav-link font-weight-bold">Logout</NavLink>
-                                        <span
-                                            className="font-weight-bold text-white mr-auto">Hello, {user.username}!</span>
+                                        <div className="nav-item dropdown">
+                                            <button 
+                                                className="nav-link font-weight-bold text-white btn btn-link"
+                                                onClick={() => setShowUserMenu(!showUserMenu)}
+                                                id="userDropdown"
+                                            >
+                                                👤 {user.username} ▼
+                                            </button>
+                                            {showUserMenu && (
+                                                <div className="dropdown-menu show">
+                                                    <NavLink 
+                                                        to={'/sales/all/' + user.username}
+                                                        className="dropdown-item"
+                                                        onClick={() => setShowUserMenu(false)}
+                                                    >
+                                                        📋 My Purchases
+                                                    </NavLink>
+                                                    <NavLink 
+                                                        to="/logout"
+                                                        className="dropdown-item text-danger"
+                                                        onClick={() => setShowUserMenu(false)}
+                                                    >
+                                                        🚪 Logout
+                                                    </NavLink>
+                                                </div>
+                                            )}
+                                        </div>
 
                                     </Fragment>
                                 )

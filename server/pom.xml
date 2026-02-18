@@ -35,6 +35,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.32</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,7 +69,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20180813</version>
+            <version>20231013</version>
         </dependency>
 
 
